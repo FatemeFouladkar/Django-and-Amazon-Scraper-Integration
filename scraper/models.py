@@ -13,3 +13,7 @@ class AmazonPhoneProducts(models.Model):
     cellular_technology = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('cellular technology'))
     wireless_network_technology = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('wireless network technology'))
     about = models.TextField(null=True, blank=True, verbose_name=_('about'))
+
+    class Meta:
+        verbose_name = _('Amazon Phone Product')
+        verbose_name_plural = _('Amazon Phone Products')
