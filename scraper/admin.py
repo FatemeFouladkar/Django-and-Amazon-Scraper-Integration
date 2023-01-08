@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import AmazonPhoneProducts
+from .models import AmazonPhoneProducts, InputLinks
 
 
 @admin.register(AmazonPhoneProducts)
@@ -9,4 +9,6 @@ class AmazonPhoneProductsAdmin(admin.ModelAdmin):
                     'operating_system', 'cellular_technology', 'wireless_network_technology')
 
 
-                    
+@admin.register(InputLinks)
+class InputLinksAdmin(admin.ModelAdmin):
+    list_display = ('links')
