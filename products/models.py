@@ -5,7 +5,10 @@ from django.utils.translation import gettext as _
 class InputLinks(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('title'),\
                              help_text=_('Say what you searched for to get the links'))
-    links = models.TextField(blank=True, null=True, verbose_name=_('links'))
+    links = models.TextField(blank=True, null=True, verbose_name=_('links'),
+                            help_text=_('Enter coma-separated links to be scraped'))
+    scrape = models.BooleanField(default=True, verbose_name=_('scrape'),\
+                                 help_text=_('Check if the links should be scraped'))
 
     class Meta:
         verbose_name = _('Input Link')
@@ -13,6 +16,7 @@ class InputLinks(models.Model):
 
 
 class AmazonPhoneProducts(models.Model):
+    ASIN = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('ASIN'))
     link = models.URLField(null=True, blank=True, verbose_name=_('link'))
     title = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('title'))
     price = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('price'))

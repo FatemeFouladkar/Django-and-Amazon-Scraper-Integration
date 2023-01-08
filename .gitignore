@@ -288,3 +288,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python,virtualenv,git
+
+#VScode
+.vscode
