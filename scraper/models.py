@@ -1,10 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext as _
-from django.contrib.postgres.fields import ArrayField
 
 
 class InputLinks(models.Model):
-    links = ArrayField(models.CharField(max_length=2000, blank=True, null=True),blank=True, null=True, verbose_name=_('links'))
+    links = models.TextField(blank=True, null=True, verbose_name=_('links'))
 
     class Meta:
         verbose_name = _('Input Link')

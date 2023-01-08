@@ -11,4 +11,4 @@ class AmazonPhoneProductsAdmin(admin.ModelAdmin):
 
 @admin.register(InputLinks)
 class InputLinksAdmin(admin.ModelAdmin):
-    list_display = ('links')
+    list_display = ('links',)
