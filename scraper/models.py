@@ -3,6 +3,8 @@ from django.utils.translation import gettext as _
 
 
 class InputLinks(models.Model):
+    title = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('title'),\
+                             help_text=_('Say what you searched for to get the links'))
     links = models.TextField(blank=True, null=True, verbose_name=_('links'))
 
     class Meta:
