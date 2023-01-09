@@ -74,7 +74,8 @@ class PhoneSpider(scrapy.Spider):
 
         link = response.url
         title = response.xpath("//span[@id='productTitle']/text()").get()
-        price = response.xpath("//span[@class='a-price aok-align-center reinventPricePriceToPayMargin priceToPay']/span/text()").get()
+        price = response.xpath("//span[@class='a-price aok-align-center reinventPricePriceToPayMargin priceToPay']/span/text()").get()\
+                or response.xpath("//table[@class='a-lineitem a-align-top']/tr/td[@class='a-span12']/span/span/text()").get()
         rating = response.xpath("//i[contains(@class,'a-icon a-icon-star')]/span/text()").get()
         brand = response.xpath("//table[@class='a-normal a-spacing-micro']/tr[@class='a-spacing-small po-brand']/td[@class='a-span9']/span/text()").get()
         model_name = response.xpath("//table[@class='a-normal a-spacing-micro']/tr[@class='a-spacing-small po-model_name']/td[@class='a-span9']/span/text()").get()
@@ -82,11 +83,11 @@ class PhoneSpider(scrapy.Spider):
         cellular_technology = response.xpath("//table[@class='a-normal a-spacing-micro']/tr[@class='a-spacing-small po-cellular_technology']/td[@class='a-span9']/span/text()").get()
         wireless_network_technology = response.xpath("//table[@class='a-normal a-spacing-micro']/tr[@class='a-spacing-small po-wireless_network_technology']/td[@class='a-span9']/span/text()").get()
         about = response.xpath("//div[@id='feature-bullets']/ul/li/span/text()").getall()
-    
+
         item['ASIN'] = asin.strip() if asin else None
         item['title'] = title.strip() if title else None
         item['link'] = link
-        item['price'] = price if price else response.xpath("//table[@class='a-lineitem a-align-top']/tr/td[@class='a-span12']/span/span/text()").get()
+        item['price'] = float(price) if price else None
         item['rating'] = rating.split(' ')[0] if rating else None
         item['brand'] = brand
         item['model_name'] = model_name

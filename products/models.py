@@ -19,7 +19,7 @@ class AmazonPhoneProducts(models.Model):
     ASIN = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('ASIN'))
     link = models.URLField(null=True, blank=True, verbose_name=_('link'))
     title = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('title'))
-    price = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('price'))
+    price = models.FloatField(null=True, blank=True, verbose_name=_('price($)'))
     rating = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('rating'))
     brand = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('brand'))
     model_name = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('model name'))
