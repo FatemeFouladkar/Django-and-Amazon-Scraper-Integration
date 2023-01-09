@@ -2,8 +2,7 @@
 
 {% block content %}
     {{ block.super }}
-    <form action="start_scraping" method="post">
-        {% csrf_token %}
+    <form action="start_scraping/" method="get">
         <input type="submit" value="Start Scraping!">
     </form>
 {% endblock %}
