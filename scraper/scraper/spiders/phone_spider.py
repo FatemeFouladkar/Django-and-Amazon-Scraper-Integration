@@ -98,14 +98,19 @@ class PhoneSpider(scrapy.Spider):
 
         yield item
 
+    def closed(self, reason):
+        logger.warn("Closing spider...")
+        input_links = InputLinks.objects.filter(scrape=True).first()
+        input_links.scrape = False
+        input_links.save()
+
 
     def get_links_from_model(self):
-        input_links = InputLinks.objects.filter(scrape=True)
+        input_links = InputLinks.objects.filter(scrape=True).first()
         links_to_be_scraped = []
-        for input_link in input_links:
-            links = input_link.links.split(',')
-            for link in links:
-                links_to_be_scraped.append(link.strip())
+        links = input_links.links.split(',')
+        for link in links:
+            links_to_be_scraped.append(link.strip())
 
         return links_to_be_scraped
 
